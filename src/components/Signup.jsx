@@ -25,8 +25,9 @@ const Signup = () => {
   };
 
   return (
-    <div className=''>
-      <div>
+    <>
+    <div className='maincontent4'>
+      <div className='signup'>
         <h1 className=''>Sign up for a free account</h1>
         <p className=''>
           Already have an account yet?{' '}
@@ -34,15 +35,14 @@ const Signup = () => {
             Sign/Log in.
           </Link>
         </p>
-      </div>
-      <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
         <div className='inputfield'>
           <label className=''>Email Address</label>
           <input
             onChange={(e) => setEmail(e.target.value)}
             className=''
             type='email'
-          />
+            />
         </div>
         <div className='inputfield'>
           <label className=''>Password</label>
@@ -50,13 +50,15 @@ const Signup = () => {
             onChange={(e) => setPassword(e.target.value)}
             className=''
             type='password'
-          />
+            />
         </div>
         <button className=''>
           Sign Up
         </button>
       </form>
     </div>
+  </div>
+    </>
   );
 };
 

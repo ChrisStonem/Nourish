@@ -32,12 +32,11 @@ const Signin = () => {
         <h2>Welcome to</h2>
         <div className="logo"/>
         <h2>Nourish!</h2>
-        <br />
         <p>Nourish is an application based on helping people through the recovery of anorexia.</p>
         <p>This app will let you track your accomplishments and general archievements during your recovery.</p>
-        <br /><br /><br />
-      </div>
-      <div className=''>
+        <p>To ensure your privacy is protected, please create an account or log into an existing one.</p>
+      <br /><br /><br />
+      <div className='login'>
         <div>
           <h1 className=''>Sign/Log in to your account</h1>
           <p className=''>
@@ -61,6 +60,7 @@ const Signin = () => {
         </button>
       </form>
     </div>
+      </div>
     </div>
     </>
   );

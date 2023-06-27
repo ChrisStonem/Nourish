@@ -41,6 +41,7 @@ export function UserSettings() {
   };
 
   return (
+    <div className='settings'>
     <div>
       <h2>User Settings</h2>
       <div>
@@ -109,15 +110,32 @@ export function UserSettings() {
           Evening
         </label>
       </div>
-      <div>
+      <div className='about'>
         <h3>About</h3>
+        <div className='abouttext'>
         <p>
-          {/* about section content here */}
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum
-          tristique leo ac elementum. Vivamus pharetra, nisl sed interdum finibus, purus
-          justo interdum magna, non feugiat est velit et nulla.
+        This project came about through my participation in the "AZAV course" at the ReDi School of Digital Integration.
         </p>
+        <p>
+        As someone who has been affected by an eating disorder for a long time, I have felt the need to pass on what I have learned and help others find their way back to a healthy life.
+        </p>
+        <p>
+        Here I've put together a few helpful resources for that:
+        </p>
+        <div className='resources'>
+        <a href="https://www.nationaleatingdisorders.org/">National Eating Disorders</a>
+        <a href="https://www.aedweb.org/home">Academy for Eating Disorders</a>
+        <a href="https://www.theprojectheal.org/">Project Heal</a>
+        <a href="https://eatingdisordersanonymous.org/">Eating Disorders Anonymous</a>
+        <a href="https://recoverywarriors.com/">Recovery Warriors</a>
+        <a href="https://www.eatingdisorderhope.com/">Eating Disorders Hope</a>
+        </div>
+        <p>
+        Remember, it's important to consult with a healthcare professional or therapist for personalized advice and treatment. These resources can provide valuable information and support, but they are not a substitute for professional help.
+        </p>
+        </div>
       </div>
+    </div>
     </div>
   );
 };

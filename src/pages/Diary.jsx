@@ -65,8 +65,11 @@ export function Diary() {
   };
 
   return (
-    <div>
-      <div>
+    <>
+    
+    <div className='diary'>
+      <h2>Diary</h2>
+      <div className='Datehandle'>
         <button onClick={handlePrevDay}>&lt;</button>
         <span>{selectedDate.toDateString()}</span>
         <button onClick={handleNextDay}>&gt;</button>
@@ -76,8 +79,9 @@ export function Diary() {
         value={inputValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
-        placeholder="Enter food item"
+        placeholder="              Enter food item and hit enter"
       />
+      <p>(Please keep in mind not to use any numbers. Simply list the kinds of foods you ate in a day.)</p>
       <ul>
         {foodItems.map(item => (
           item.date === selectedDate.toLocaleDateString() && ( // Only show items for the selected date
@@ -90,5 +94,6 @@ export function Diary() {
         ))}
       </ul>
     </div>
+    </>
   );
 }

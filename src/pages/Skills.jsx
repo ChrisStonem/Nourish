@@ -23,38 +23,38 @@ export const Skills = () => {
     '16. Trying a new salad or salad dressing',
     '17. Eating a meal outdoors or in a different setting',
     '18. Preparing a simple meal with multiple components',
-    'Trying a new type of protein (e.g., tofu, beans)',
-    'Eating a meal without checking mirrors or body checking',
-    'Experimenting with different flavors in cooking (e.g., sweet, savory)',
-    'Trying a new condiment or sauce',
-    'Incorporating a source of healthy fats into a meal',
-    'Eating a meal without comparing it to others portions',
-    'Trying a new cooking technique (e.g., sautéing, roasting)',
-    'Adding a variety of colors to a meal (e.g., colorful vegetables)',
-    'Eating a meal without compensatory behaviors (e.g., excessive exercise)',
-    'Trying a new type of whole grain (e.g., quinoa, brown rice)',
-    'Eating a meal without following strict food rules',
-    'Preparing a meal with ingredients previously avoided',
-    'Trying a new combination of flavors or cuisines',
-    'Eating a meal without reading nutrition labels',
-    'Incorporating fermented foods into a meal (e.g., yogurt, sauerkraut)',
-    'Trying a new cooking method that promotes self-reliance',
-    'Experimenting with homemade dressings or marinades',
-    'Eating a meal without preoccupation about future meals',
-    'Trying a new vegetable preparation (e.g., steamed, roasted)',
-    'Adding a source of natural sweetness to a meal (e.g., honey, fruit)',
-    'Eating a meal without feeling the need to exercise afterward',
-    'Trying a new seasoning or spice blend',
-    'Incorporating a source of plant-based protein into a meal',
-    'Eating a meal without rigidly following a meal plan',
-    'Trying a new type of legume (e.g., lentils, chickpeas)',
-    'Adding a touch of creativity to food presentation',
-    'Eating a meal without seeking reassurance or validation',
-    'Trying a new cooking technique that requires patience (e.g., slow cooking)',
-    'Incorporating a source of Omega-3 fatty acids into a meal',
-    'Eating a meal without compensating with restriction in subsequent meals',
-    'Trying a new flavor combination that challenges previous preferences',
-    'Eating a meal without guilt or negative self-talk',
+    '19. Trying a new type of protein (e.g., tofu, beans)',
+    '20. Eating a meal without checking mirrors or body checking',
+    '21. Experimenting with different flavors in cooking (e.g., sweet, savory)',
+    '22. Trying a new condiment or sauce',
+    '23. Incorporating a source of healthy fats into a meal',
+    '24. Eating a meal without comparing it to others portions',
+    '25. Trying a new cooking technique (e.g., sautéing, roasting)',
+    '26. Adding a variety of colors to a meal (e.g., colorful vegetables)',
+    '27. Eating a meal without compensatory behaviors (e.g., excessive exercise)',
+    '28. Trying a new type of whole grain (e.g., quinoa, brown rice)',
+    '29. Eating a meal without following strict food rules',
+    '30. Preparing a meal with ingredients previously avoided',
+    '31. Trying a new combination of flavors or cuisines',
+    '32. Eating a meal without reading nutrition labels',
+    '33. Incorporating fermented foods into a meal (e.g., yogurt, sauerkraut)',
+    '34. Trying a new cooking method that promotes self-reliance',
+    '35. Experimenting with homemade dressings or marinades',
+    '36. Eating a meal without preoccupation about future meals',
+    '37. Trying a new vegetable preparation (e.g., steamed, roasted)',
+    '38. Adding a source of natural sweetness to a meal (e.g., honey, fruit)',
+    '39. Eating a meal without feeling the need to exercise afterward',
+    '40. Trying a new seasoning or spice blend',
+    '41. Incorporating a source of plant-based protein into a meal',
+    '42. Eating a meal without rigidly following a meal plan',
+    '43. Trying a new type of legume (e.g., lentils, chickpeas)',
+    '44. Adding a touch of creativity to food presentation',
+    '45. Eating a meal without seeking reassurance or validation',
+    '46. Trying a new cooking technique that requires patience (e.g., slow cooking)',
+    '47. Incorporating a source of Omega-3 fatty acids into a meal',
+    '48. Eating a meal without compensating with restriction in subsequent meals',
+    '49. Trying a new flavor combination that challenges previous preferences',
+    '50. Eating a meal without guilt or negative self-talk',
   ];
 
   const handleClick = (index) => {
@@ -72,7 +72,7 @@ export const Skills = () => {
     return boxContents.map((content, index) => (
       <div
         key={index}
-        className={`box ${boxClicked[index] ? 'clicked' : ''}`}
+        className={`box2 ${boxClicked[index] ? 'clicked' : ''}`}
         onClick={() => handleClick(index)}
       >
         <p>{content}</p>
@@ -84,9 +84,13 @@ export const Skills = () => {
     <>
       <div className="maincontent2">
         <h2>Skills</h2>
+        <p>click the boxes to earn points.</p>
+
         <h3>{counter} / 50</h3>
         <br />
+        <div className='boxes2'>
         {renderBoxes()}
+        </div>
       </div>
     </>
   );

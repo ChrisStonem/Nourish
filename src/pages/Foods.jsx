@@ -234,10 +234,13 @@ export const Foods = () => {
   return(
     <>
       <div className="maincontent2">
-        <h2>Food I can already eat</h2>
+        <h2>Food I can eat already</h2>
+        <p>click the boxes to earn points.</p>
         <h3>{counter} / 100</h3>
         <br />
-        {renderBoxes()}
+        <div className='boxes'>
+          {renderBoxes()}
+        </div>
       </div>
     </>
   );}
