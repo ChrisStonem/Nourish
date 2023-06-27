@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
+import 'C:/Users/redi user/Desktop/AZAV/nourish/src/App.css'
 
 const Account = () => {
   // get content from useContext UserAuth()

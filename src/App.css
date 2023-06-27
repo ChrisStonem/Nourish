@@ -78,6 +78,28 @@ nav {
 }
 
 /* Body */
+/* loginpage */
+.maincontent3{
+	height: 34rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    background-color:#fffab1;
+}
+.maincontent3 .logo{
+	display: flex;
+	margin-left: 40.5rem;
+    justify-content: center;
+    align-content: center;
+    background-image: url("./assets/logo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+}
 /* Homepage */
 .maincontent1{
     height: 34rem;

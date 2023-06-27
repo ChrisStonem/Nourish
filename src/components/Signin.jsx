@@ -26,16 +26,27 @@ const Signin = () => {
   };
 
   return (
-    <div className=''>
-      <div>
-        <h1 className=''>Sign/Log in to your account</h1>
-        <p className=''>
-          Don't have an account yet?{' '}
-          <Link to='/signup' className='underline'>
-            Sign up.
-          </Link>
-        </p>
+    <>
+    <div className="maincontent3">
+      <div className="wgo">
+        <h2>Welcome to</h2>
+        <div className="logo"/>
+        <h2>Nourish!</h2>
+        <br />
+        <p>Nourish is an application based on helping people through the recovery of anorexia.</p>
+        <p>This app will let you track your accomplishments and general archievements during your recovery.</p>
+        <br /><br /><br />
       </div>
+      <div className=''>
+        <div>
+          <h1 className=''>Sign/Log in to your account</h1>
+          <p className=''>
+            Don't have an account yet?{' '}
+            <Link to='/signup' className='underline'>
+              Sign up.
+            </Link>
+          </p>
+        </div>
       <form onSubmit={handleSubmit}>
         <div className='inputfield'>
           <label className=''>Email Address</label>
@@ -50,6 +61,8 @@ const Signin = () => {
         </button>
       </form>
     </div>
+    </div>
+    </>
   );
 };
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-
 export function Diary() {
   const [inputValue, setInputValue] = useState('');
   const [foodItems, setFoodItems] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(new Date()); // Initialize with the current date
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -20,7 +20,8 @@ export function Diary() {
     if (inputValue.trim() !== '') {
       const newItem = {
         id: Date.now(),
-        name: inputValue.trim()
+        name: inputValue.trim(),
+        date: selectedDate.toLocaleDateString(), // Add the selected date to the food item
       };
       setFoodItems([...foodItems, newItem]);
       setInputValue('');
@@ -47,8 +48,29 @@ export function Diary() {
     setFoodItems(updatedItems);
   };
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handlePrevDay = () => {
+    const prevDay = new Date(selectedDate);
+    prevDay.setDate(prevDay.getDate() - 1);
+    setSelectedDate(prevDay);
+  };
+
+  const handleNextDay = () => {
+    const nextDay = new Date(selectedDate);
+    nextDay.setDate(nextDay.getDate() + 1);
+    setSelectedDate(nextDay);
+  };
+
   return (
     <div>
+      <div>
+        <button onClick={handlePrevDay}>&lt;</button>
+        <span>{selectedDate.toDateString()}</span>
+        <button onClick={handleNextDay}>&gt;</button>
+      </div>
       <input
         type="text"
         value={inputValue}
@@ -58,11 +80,13 @@ export function Diary() {
       />
       <ul>
         {foodItems.map(item => (
-          <li key={item.id}>
-            {item.name}
-            <button onClick={() => handleEdit(item.id)}>Edit</button>
-            <button onClick={() => handleDelete(item.id)}>Delete</button>
-          </li>
+          item.date === selectedDate.toLocaleDateString() && ( // Only show items for the selected date
+            <li key={item.id}>
+              {item.name}
+              <button onClick={() => handleEdit(item.id)}>Edit</button>
+              <button onClick={() => handleDelete(item.id)}>Delete</button>
+            </li>
+          )
         ))}
       </ul>
     </div>

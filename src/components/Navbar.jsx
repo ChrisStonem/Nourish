@@ -20,7 +20,6 @@ function Navbar() {
 				<a href="http://localhost:5173/Foods">Foods</a>
 				<a href="http://localhost:5173/Skills">Skills</a>
 				<a href="http://localhost:5173/Diary">Diary</a>
-				<a href="http://localhost:5173/Recipes">Recipes</a>
 				<a href="http://localhost:5173/User_Settings">User Settings</a>
 				<button
 					className="nav-btn nav-close-btn"
