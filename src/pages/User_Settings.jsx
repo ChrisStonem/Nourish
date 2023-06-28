@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import ProfilePictureUpload from '../components/ProfilePictureUpload';
 
 export function UserSettings() {
   const [profileName, setProfileName] = useState('');
@@ -7,8 +8,28 @@ export function UserSettings() {
   const [isNameEditable, setIsNameEditable] = useState(true);
   const [selectedTimes, setSelectedTimes] = useState([]);
 
+
+
+  useEffect(() => {
+    // Retrieve profile name from local storage on component mount
+    const storedProfileName = localStorage.getItem('profileName');
+    if (storedProfileName) {
+      setProfileName(storedProfileName);
+    }
+  }, []);
+
   const handleProfileNameChange = (event) => {
     setProfileName(event.target.value);
+  };
+
+  const handleNameChange = () => {
+    setIsNameEditable(true);
+  };
+
+  const handleNameConfirmation = () => {
+    setIsNameEditable(false);
+    // Store profile name in local storage
+    localStorage.setItem('profileName', profileName);
   };
 
   const handlePushMessagesChange = (event) => {
@@ -17,14 +38,6 @@ export function UserSettings() {
 
   const handleThemeChange = (event) => {
     setTheme(event.target.value);
-  };
-
-  const handleNameConfirmation = () => {
-    setIsNameEditable(false);
-  };
-
-  const handleNameChange = () => {
-    setIsNameEditable(true);
   };
 
   const handleTimeSelection = (event) => {
@@ -42,100 +55,101 @@ export function UserSettings() {
 
   return (
     <div className='settings'>
-    <div>
-      <h2>User Settings</h2>
       <div>
-        {/* <img src={profilePictureURL} alt="Profile Picture" /> */}
-        <label htmlFor="profilePicture">Profile Picture:</label>
-        {/* image upload component here */}
-      </div>
-      <div>
-        <label htmlFor="profileName">Profile Name:</label>
-        <input
-          type="text"
-          id="profileName"
-          value={profileName}
-          onChange={handleProfileNameChange}
-          readOnly={!isNameEditable}
-        />
-        {isNameEditable ? (
-          <button onClick={handleNameConfirmation}>Confirm</button>
-        ) : (
-          <button onClick={handleNameChange}>Change</button>
-        )}
-      </div>
-      <div>
-        <label htmlFor="pushMessages">Push Messages:</label>
-        <input
-          type="checkbox"
-          id="pushMessages"
-          checked={pushMessages}
-          onChange={handlePushMessagesChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="theme">Theme:</label>
-        <select id="theme" value={theme} onChange={handleThemeChange}>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </div>
-      <div>
-        <h3>Push Message Times</h3>
-        <label>
-          <input
-            type="checkbox"
-            value="morning"
-            checked={selectedTimes.includes('morning')}
-            onChange={handleTimeSelection}
-          />
-          Morning
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="afternoon"
-            checked={selectedTimes.includes('afternoon')}
-            onChange={handleTimeSelection}
-          />
-          Afternoon
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="evening"
-            checked={selectedTimes.includes('evening')}
-            onChange={handleTimeSelection}
-          />
-          Evening
-        </label>
-      </div>
-      <div className='about'>
-        <h3>About</h3>
-        <div className='abouttext'>
-        <p>
-        This project came about through my participation in the "AZAV course" at the ReDi School of Digital Integration.
-        </p>
-        <p>
-        As someone who has been affected by an eating disorder for a long time, I have felt the need to pass on what I have learned and help others find their way back to a healthy life.
-        </p>
-        <p>
-        Here I've put together a few helpful resources for that:
-        </p>
-        <div className='resources'>
-        <a href="https://www.nationaleatingdisorders.org/">National Eating Disorders</a>
-        <a href="https://www.aedweb.org/home">Academy for Eating Disorders</a>
-        <a href="https://www.theprojectheal.org/">Project Heal</a>
-        <a href="https://eatingdisordersanonymous.org/">Eating Disorders Anonymous</a>
-        <a href="https://recoverywarriors.com/">Recovery Warriors</a>
-        <a href="https://www.eatingdisorderhope.com/">Eating Disorders Hope</a>
+        <h2>User Settings</h2>
+        <div>
+          {/* <img src={profilePictureURL} alt="Profile Picture" /> */}
+          <label htmlFor="profilePicture">Profile Picture:</label>
+          <ProfilePictureUpload />
         </div>
-        <p>
-        Remember, it's important to consult with a healthcare professional or therapist for personalized advice and treatment. These resources can provide valuable information and support, but they are not a substitute for professional help.
-        </p>
+        <div>
+          <label htmlFor="profileName">Profile Name:</label>
+          <input
+            type="text"
+            id="profileName"
+            value={profileName}
+            onChange={handleProfileNameChange}
+            readOnly={!isNameEditable}
+          />
+          {isNameEditable ? (
+            <button onClick={handleNameConfirmation}>Confirm</button>
+          ) : (
+            <button onClick={handleNameChange}>Change</button>
+          )}
+        </div>
+        <div>
+          <h3>Push Message Times</h3>
+          <div>
+            <label htmlFor="pushMessages">Push Messages:</label>
+            <input
+              type="checkbox"
+              id="pushMessages"
+              checked={pushMessages}
+              onChange={handlePushMessagesChange}
+            />
+          </div>
+          <label>
+            <input
+              type="checkbox"
+              value="morning"
+              checked={selectedTimes.includes('morning')}
+              onChange={handleTimeSelection}
+            />
+            Morning
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              value="afternoon"
+              checked={selectedTimes.includes('afternoon')}
+              onChange={handleTimeSelection}
+            />
+            Afternoon
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              value="evening"
+              checked={selectedTimes.includes('evening')}
+              onChange={handleTimeSelection}
+            />
+            Evening
+          </label>
+        </div>
+        <div>
+          <h3>Theme</h3>
+          <label htmlFor="theme">Theme:</label>
+          <select id="theme" value={theme} onChange={handleThemeChange}>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+        <div className='about'>
+          <h3>About</h3>
+          <div className='abouttext'>
+            <p>
+              This project came about through my participation in the "AZAV course" at the ReDi School of Digital Integration.
+            </p>
+            <p>
+              As someone who has been affected by an eating disorder for a long time, I have felt the need to pass on what I have learned and help others find their way back to a healthy life.
+            </p>
+            <p>
+              Here I've put together a few helpful resources for that:
+            </p>
+            <div className='resources'>
+              <a href="https://www.nationaleatingdisorders.org/">National Eating Disorders</a>
+              <a href="https://www.aedweb.org/home">Academy for Eating Disorders</a>
+              <a href="https://www.theprojectheal.org/">Project Heal</a>
+              <a href="https://eatingdisordersanonymous.org/">Eating Disorders Anonymous</a>
+              <a href="https://recoverywarriors.com/">Recovery Warriors</a>
+              <a href="https://www.eatingdisorderhope.com/">Eating Disorders Hope</a>
+            </div>
+            <p>
+              Remember, it's important to consult with a healthcare professional or therapist for personalized advice and treatment. These resources can provide valuable information and support, but they are not a substitute for professional help.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

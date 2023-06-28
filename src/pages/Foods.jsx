@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Icon1 from "C:/Users/redi user/Desktop/AZAV/nourish/src/assets/icons/apple.png";
 import Icon2 from "C:/Users/redi user/Desktop/AZAV/nourish/src/assets/icons/bananas.png";
 import Icon3 from "C:/Users/redi user/Desktop/AZAV/nourish/src/assets/icons/blueberry.png";
@@ -102,8 +102,50 @@ import Icon100 from "C:/Users/redi user/Desktop/AZAV/nourish/src/assets/icons/ch
 
 
 export const Foods = () => {
-  const [counter, setCounter] = useState(0);
-  const [boxClicked, setBoxClicked] = useState([]);
+  const [counter2, setCounter2] = useState(0);
+  const [boxClicked2, setBoxClicked2] = useState(() => {
+    const savedClickedState = localStorage.getItem('boxClicked2');
+    return savedClickedState ? JSON.parse(savedClickedState) : [];
+  });
+
+  useEffect(() => {
+    // Retrieve the clicked state from local storage
+    const savedClickedState = localStorage.getItem('boxClicked2');
+    if (savedClickedState) {
+      setBoxClicked2(JSON.parse(savedClickedState));
+    }
+  }, []);
+
+useEffect(() => {
+    // Save the clicked state to local storage
+    localStorage.setItem('boxClicked2', JSON.stringify(boxClicked2));
+  }, [boxClicked2]);
+
+  useEffect(() => {
+    // Calculate the current counter value based on the clicked boxes
+    const currentCounter = boxClicked2.filter((clicked) => clicked).length;
+    setCounter2(currentCounter);
+  }, [boxClicked2]);
+
+
+
+  useEffect(() => {
+    // Save the counter value to local storage
+    localStorage.setItem('counter2', counter2.toString());
+  }, [counter2]);
+
+  useEffect(() => {
+    // Retrieve the counter value from local storage
+    const savedCounter = localStorage.getItem('counter2');
+    if (savedCounter !== null) {
+      setCounter2(parseInt(savedCounter));
+    }
+  }, []);
+
+  // Update the local storage whenever boxClicked changes
+  useEffect(() => {
+    localStorage.setItem('boxClicked2', JSON.stringify(boxClicked2));
+  }, [boxClicked2]);
 
   const boxContents = [
     <img src={Icon1} alt="apple" width="100px" height="100px"/>,
@@ -209,13 +251,13 @@ export const Foods = () => {
   ];
 
   const handleClick = (index) => {
-    if (!boxClicked[index]) {
-      setBoxClicked((prevBoxClicked) => {
+    if (!boxClicked2[index]) {
+      setBoxClicked2((prevBoxClicked) => {
         const updatedBoxClicked = [...prevBoxClicked];
         updatedBoxClicked[index] = true;
         return updatedBoxClicked;
       });
-      setCounter((prevCounter) => prevCounter + 1);
+      setCounter2((prevCounter) => prevCounter + 1);
     }
   };
 
@@ -223,7 +265,7 @@ export const Foods = () => {
     return boxContents.map((content, index) => (
       <div
         key={index}
-        className={`box ${boxClicked[index] ? 'clicked' : ''}`}
+        className={`box ${boxClicked2[index] ? 'clicked' : ''}`}
         onClick={() => handleClick(index)}
       >
         <p>{content}</p>
@@ -236,7 +278,7 @@ export const Foods = () => {
       <div className="maincontent2">
         <h2>Food I can eat already</h2>
         <p>click the boxes to earn points.</p>
-        <h3>{counter} / 100</h3>
+        <h3>{counter2} / 100</h3>
         <br />
         <div className='boxes'>
           {renderBoxes()}

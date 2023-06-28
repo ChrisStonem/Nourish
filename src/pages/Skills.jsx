@@ -1,8 +1,48 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const Skills = () => {
-  const [counter, setCounter] = useState(0);
-  const [boxClicked, setBoxClicked] = useState([]);
+  const [counter1, setCounter1] = useState(0);
+  const [boxClicked, setBoxClicked] = useState(() => {
+    const savedClickedState = localStorage.getItem('boxClicked');
+    return savedClickedState ? JSON.parse(savedClickedState) : [];
+  });
+
+  useEffect(() => {
+    // Retrieve the clicked state from local storage
+    const savedClickedState = localStorage.getItem('boxClicked');
+    if (savedClickedState) {
+      setBoxClicked(JSON.parse(savedClickedState));
+    }
+  }, []);
+
+  useEffect(() => {
+    // Save the clicked state to local storage
+    localStorage.setItem('boxClicked', JSON.stringify(boxClicked));
+  }, [boxClicked]);
+
+  useEffect(() => {
+    // Calculate the current counter value based on the clicked boxes
+    const currentCounter = boxClicked.filter((clicked) => clicked).length;
+    setCounter1(currentCounter);
+  }, [boxClicked]);
+
+  useEffect(() => {
+    // Save the counter value to local storage
+    localStorage.setItem('counter1', counter1.toString());
+  }, [counter1]);
+
+  useEffect(() => {
+    // Retrieve the counter value from local storage
+    const savedCounter = localStorage.getItem('counter1');
+    if (savedCounter !== null) {
+      setCounter1(parseInt(savedCounter));
+    }
+  }, []);
+
+  // Update the local storage whenever boxClicked changes
+  useEffect(() => {
+    localStorage.setItem('boxClicked', JSON.stringify(boxClicked));
+  }, [boxClicked]);
 
   const boxContents = [
     '1. Eating a small snack between meals',
@@ -64,7 +104,7 @@ export const Skills = () => {
         updatedBoxClicked[index] = true;
         return updatedBoxClicked;
       });
-      setCounter((prevCounter) => prevCounter + 1);
+      setCounter1((prevCounter) => prevCounter + 1);
     }
   };
 
@@ -86,7 +126,7 @@ export const Skills = () => {
         <h2>Skills</h2>
         <p>click the boxes to earn points.</p>
 
-        <h3>{counter} / 50</h3>
+        <h3>{counter1} / 50</h3>
         <br />
         <div className='boxes2'>
         {renderBoxes()}
