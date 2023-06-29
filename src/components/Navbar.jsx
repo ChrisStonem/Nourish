@@ -16,6 +16,7 @@ function Navbar() {
 			<div className="logo"/>
 			<a href="/Home" className="headline">Nourish</a>
 			<nav ref={navRef}>
+				<link rel="stylesheet" href="" />
 				<a href="/Home">Home</a>
 				<a href="/Foods">Foods</a>
 				<a href="/Skills">Skills</a>
