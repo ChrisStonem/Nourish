@@ -1,7 +1,7 @@
 import './App.css'
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./Components/Navbar";
+import Navbar from "./components/Navbar";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import { AuthContextProvider } from "./context/AuthContext";
